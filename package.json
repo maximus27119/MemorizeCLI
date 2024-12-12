@@ -1,0 +1,21 @@
+{
+  "name": "memorizecli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node src/main.ts",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@prisma/client": "^6.0.1",
+    "@types/node": "^22.10.2",
+    "inquirer": "^12.2.0",
+    "prisma": "^6.0.1",
+    "sqlite3": "^5.1.7",
+    "typescript": "^5.7.2"
+  }
+}
