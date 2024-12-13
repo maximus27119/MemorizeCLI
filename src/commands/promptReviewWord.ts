@@ -1,9 +1,10 @@
 import inquirer from "inquirer";
 import wordService from "../services/WordService";
 import scheduler from "../services/Scheduler";
+import Word from "../models/Word";
 
 export default async function reviewWords(): Promise<void> {
-  const words = await wordService.getWordsForReview();
+  const words: Word[] = await wordService.getWordsForReview();
 
   if (words.length === 0) {
     console.log("There are no words to repeat.");
@@ -16,17 +17,13 @@ export default async function reviewWords(): Promise<void> {
         type: "list",
         name: "action",
         message: `Word: ${word.word}. What do you want to do?`,
-        choices: [
-          "Show translation",
-          "Delete",
-          "Reschedule to the next day",
-          "Skip",
-        ],
-      },
+        choices: ["Show translation", "Delete", "Reschedule to the next day", "Skip"]
+      }
     ]);
 
     switch (action) {
       case "Show translation":
+        // prettier-ignore
         console.log(`Translation: ${word.translation}, Meaning: ${word.meaning}`);
         break;
 

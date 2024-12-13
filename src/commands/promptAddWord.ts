@@ -6,7 +6,7 @@ export default async function promptAddWord(): Promise<void> {
   const { word, translation, meaning } = await inquirer.prompt([
     { type: "input", name: "word", message: "Input a word:" },
     { type: "input", name: "translation", message: "Input translation:" },
-    { type: "input", name: "meaning", message: "Input meaning (optional):" },
+    { type: "input", name: "meaning", message: "Input meaning (optional):" }
   ]);
 
   const newWord: WordData = new WordData(word, translation, meaning);

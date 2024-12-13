@@ -11,7 +11,7 @@ async function main(): Promise<void> {
         name: "action",
         message: "Select an action:",
         choices: ["Add a word", "Repeat words", "Show stats", "Exit"]
-      },
+      }
     ]);
 
     switch (action) {

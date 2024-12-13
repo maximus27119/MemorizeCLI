@@ -5,7 +5,7 @@ import WordData from "../models/WordData";
 class WordService {
   async addWord(word: WordData): Promise<void> {
     await prismaClient.word.create({
-      data: word,
+      data: word
     });
   }
 
@@ -17,22 +17,22 @@ class WordService {
     return prismaClient.word.findMany({
       where: {
         nextReviewDate: {
-          lte: new Date(),
-        },
-      },
+          lte: new Date()
+        }
+      }
     });
   }
 
   async updateWord(id: number, word: WordData): Promise<void> {
     await prismaClient.word.update({
       where: { id },
-      data: word,
+      data: word
     });
   }
 
   async deleteWord(id: number): Promise<void> {
     await prismaClient.word.delete({
-      where: { id },
+      where: { id }
     });
   }
 }
