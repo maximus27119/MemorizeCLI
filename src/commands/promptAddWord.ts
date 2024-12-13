@@ -11,5 +11,5 @@ export default async function promptAddWord(): Promise<void> {
 
   const newWord: WordData = new WordData(word, translation, meaning);
   await wordService.addWord(newWord);
-  console.log("Слово добавлено!");
+  console.log("Word was added!");
 }

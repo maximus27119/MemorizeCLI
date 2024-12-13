@@ -9,7 +9,7 @@ async function main(): Promise<void> {
       {
         type: "list",
         name: "action",
-        message: "Выберите действие:",
+        message: "Select an action:",
         choices: ["Add a word", "Repeat words", "Show stats", "Exit"]
       },
     ]);
