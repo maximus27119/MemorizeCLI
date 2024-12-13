@@ -1,36 +1,33 @@
 import inquirer from "inquirer";
-import { WordService } from "./services/WordService";
-import { addWord } from "./commands/AddWord";
-import { reviewWords } from "./commands/ReviewWord";
-import { showStats } from "./commands/ShowStats";
+import promptAddWord from "./commands/promptAddWord";
+import promptReviewWords from "./commands/promptReviewWord";
+import promptShowStats from "./commands/promptShowStats";
 
-const wordService = new WordService();
-
-async function main() {
+async function main(): Promise<void> {
   while (true) {
     const { action } = await inquirer.prompt([
       {
         type: "list",
         name: "action",
         message: "Выберите действие:",
-        choices: ["Добавить слово", "Повторить слова", "Показать статистику", "Выйти"],
+        choices: ["Add a word", "Repeat words", "Show stats", "Exit"]
       },
     ]);
 
     switch (action) {
-      case "Добавить слово":
-        await addWord(wordService);
+      case "Add a word":
+        await promptAddWord();
         break;
 
-      case "Повторить слова":
-        await reviewWords(wordService);
+      case "Repeat words":
+        await promptReviewWords();
         break;
 
-      case "Показать статистику":
-        showStats(wordService);
+      case "Show stats":
+        await promptShowStats();
         break;
 
-      case "Выйти":
+      case "Exit":
         process.exit();
     }
   }
