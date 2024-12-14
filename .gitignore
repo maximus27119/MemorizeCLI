@@ -4,3 +4,4 @@ node_modules
 dist
 .idea
 prisma/database.sqlite
+prisma/database.sqlite-journal

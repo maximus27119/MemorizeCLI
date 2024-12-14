@@ -11,35 +11,39 @@ export default async function reviewWords(): Promise<void> {
     return;
   }
 
-  for (const word of words) {
+  for (let i = 0; i < words.length;) {
+    const currentWord = words[i];
     const { action } = await inquirer.prompt([
       {
         type: "list",
         name: "action",
-        message: `Word: ${word.word}. What do you want to do?`,
-        choices: ["Show translation", "Delete", "Reschedule to the next day", "Skip"]
+        message: `Word: ${currentWord.word}. What do you want to do?`,
+        choices: ["Show translation", "Delete", "Reschedule for the next day", "Skip"]
       }
     ]);
 
     switch (action) {
       case "Show translation":
         // prettier-ignore
-        console.log(`Translation: ${word.translation}, Meaning: ${word.meaning}`);
+        console.log(`Translation: ${currentWord.translation}, Meaning: ${currentWord.meaning}`);
         break;
 
       case "Delete":
-        await wordService.deleteWord(word.id);
+        await wordService.deleteWord(currentWord.id);
         console.log("Word was removed!");
+        i++;
         break;
 
       case "Reschedule for the next day":
-        scheduler.calculateNextReview(word);
-        await wordService.updateWord(word.id, word);
+        scheduler.calculateNextReview(currentWord);
+        await wordService.updateWord(currentWord.id, currentWord);
         console.log("Rescheduled for the next day!");
+        i++;
         break;
 
       default:
         console.log("Skipped.");
+        i++;
     }
   }
 }
