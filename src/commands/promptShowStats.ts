@@ -1,10 +1,11 @@
 import wordService from "../services/WordService";
+import Word from "../models/Word";
 
 export default async function promptShowStats(): Promise<void> {
-  const totalWords = await wordService.getAllWords();
-  const totalWordsLength = totalWords.length;
-  const wordsForReview = await wordService.getWordsForReview();
-  const wordsForReviewLength = wordsForReview.length;
+  const totalWords: Word[] = await wordService.getAllWords();
+  const totalWordsLength: number = totalWords.length;
+  const wordsForReview: Word[] = await wordService.getWordsForReview();
+  const wordsForReviewLength: number = wordsForReview.length;
 
   console.log(`Total amount of words: ${totalWordsLength}`);
   console.log(`Amount of words to repeat: ${wordsForReviewLength}`);
