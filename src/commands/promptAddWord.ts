@@ -1,15 +1,19 @@
 import inquirer from "inquirer";
 import wordService from "../services/WordService";
-import WordData from "../models/WordData";
+import CreateWordDto from "../models/CreateWord.dto";
 
 export default async function promptAddWord(): Promise<void> {
-  const { word, translation, meaning } = await inquirer.prompt([
+  const { word, meaning } = await inquirer.prompt([
     { type: "input", name: "word", message: "Input a word:" },
-    { type: "input", name: "translation", message: "Input translation:" },
-    { type: "input", name: "meaning", message: "Input meaning (optional):" }
+    { type: "input", name: "meaning", message: "Input meaning:" }
   ]);
 
-  const newWord: WordData = new WordData(word, translation, meaning);
-  await wordService.addWord(newWord);
-  console.log("Word was added!");
+  if (word && meaning) {
+    const newWord: CreateWordDto = new CreateWordDto(word, meaning);
+    await wordService.addWord(newWord);
+    console.log("Word was added!");
+  } else {
+    console.log("Error, no empty fields are allowed!");
+  }
+  
 }

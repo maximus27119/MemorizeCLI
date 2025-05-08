@@ -1,0 +1,1 @@
+export type TestChoices = Record<string, string>;

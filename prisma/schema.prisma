@@ -10,8 +10,7 @@ datasource db {
 model Word {
   id              Int      @id @default(autoincrement())
   word            String
-  translation     String
-  meaning         String?
-  nextReviewDate  DateTime @default(now())
+  meaning         String
+  nextRepetitionDate  DateTime @default(now())
   repetitionCount Int      @default(0)
 }

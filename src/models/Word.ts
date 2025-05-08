@@ -1,8 +1,7 @@
 export default interface Word {
   id: number;
   word: string;
-  translation: string;
-  meaning: string | null;
-  nextReviewDate: Date;
+  meaning: string;
+  nextRepetitionDate: Date;
   repetitionCount: number;
 }
